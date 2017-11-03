@@ -9,7 +9,7 @@ import (
 
 var (
 	packageName = "github.com/kevingimbel/license"
-	LDFLAGS     = "-X $PACKAGE/cmd.version=$VERSION -X $PACKAGE/cmd.buildDate=$BUILD_DATE"
+	LDFLAGS     = "-X $PACKAGE/lib.version=$VERSION -X $PACKAGE/lib.buildDate=$BUILD_DATE"
 )
 
 // Proves a flag environment for LDFLAGS
