@@ -5,58 +5,43 @@ import (
 	"net/http"
 	"os"
 	"encoding/json"
+	"github.com/kevingimbel/license/lib"
 	"github.com/spf13/cobra"
 )
 
-type OSIJsonStruct struct {
-	Name string `json:"name"`
-	NameShort string `json:"id"`
-	Links []struct {
-		Name string `json:"note"`
-		URL string `json:"url"`
-	}
-}
-var (
-	outdir = os.Getenv("HOME") + "/.license/"
-	outfile = outdir + "license.json"
-)
 
 // getCmd represents the get command
 var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "Fetch the latest license data",
-	Long: fmt.Sprintf(`Download the latest license data from http://api.opensource.org.s3.amazonaws.com/licenses/licenses.json
+	Long: fmt.Sprintf(`Download the latest license data from http://osl.kevin.codes/licenses/
 
-	The downlaoded data is stored inside the %s.
-	`, outfile),
+	The downlaoded data is stored inside the %s file.
+	`, lib.GetOutputFilePath()),
 	Run: func(cmd *cobra.Command, args []string) {
 		update()
 	},
 }
 
-func update() (int, []OSIJsonStruct) {
-	print("Importing data")
-	// data, _ := http.Get("http://api.opensource.org.s3.amazonaws.com/licenses/licenses.json")
-
-
+func update() (int, []lib.OSLJSONFormat) {
 	// Create http client and prepare the request
 	httpClient := &http.Client{}
-	req, err := http.NewRequest("GET", "http://api.opensource.org.s3.amazonaws.com/licenses/licenses.json", nil)
+	req, err := http.NewRequest("GET", lib.GetUpdateURL(), nil)
 
 	if err != nil {
 		fmt.Println("Unable to make requet.\n", err)
 		return 1, nil
 	}
 
-	req.Header.Set("User-Agent", "license-cli")
+	req.Header.Set("User-Agent", "osl-cli")
 	response, err := httpClient.Do(req)
 
 	defer response.Body.Close()
 
-	data := []OSIJsonStruct{}
+	data := []lib.OSLJSONFormat{}
 	json.NewDecoder(response.Body).Decode(&data)
 
-	file, err := os.Create(outfile)
+	file, err := os.Create(lib.GetOutputFilePath())
 
 	if err != nil {
 		fmt.Println("Error creating file.\n", err)
@@ -70,6 +55,7 @@ func update() (int, []OSIJsonStruct) {
 		return 1, nil
 	}
 
+	fmt.Println("Update done.")
 	return 0, data
 }
 

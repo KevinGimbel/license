@@ -3,10 +3,8 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"fmt"
+	"github.com/kevingimbel/license/lib"
 )
-
-var version string
-var buildDate string
 
 func init() {
 	RootCmd.AddCommand(versionCmd)
@@ -17,6 +15,9 @@ var versionCmd = &cobra.Command{
 	Short: "Print the version number of license",
 	Long:  `Print the version number of license`,
 	Run: func(cmd *cobra.Command, args []string) {
+		var version = lib.GetVersion()
+		var buildDate = lib.GetBuildDate()
+
 		if version == "" {
 			version = "development"
 			buildDate = "just now"
