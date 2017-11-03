@@ -34,11 +34,16 @@ var listCmd = &cobra.Command{
 		defer f.Close()
 
 		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
+			err, newData := Update()
 
-		json.NewDecoder(f).Decode(&data)
+			if err > 0 {
+				fmt.Println("Could not read or update data.")
+				os.Exit(err)
+			}
+			data = newData
+		} else {
+			json.NewDecoder(f).Decode(&data)
+		}
 
 		for _, license := range data {
 			fmt.Println(license.Name, "(id: ", license.ID, ")")

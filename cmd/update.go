@@ -19,11 +19,11 @@ var updateCmd = &cobra.Command{
 	The downlaoded data is stored inside the %s file.
 	`, lib.GetOutputFilePath()),
 	Run: func(cmd *cobra.Command, args []string) {
-		update()
+		Update()
 	},
 }
 
-func update() (int, []lib.OSLJSONFormat) {
+func Update() (int, []lib.OSLJSONFormat) {
 	// Create http client and prepare the request
 	httpClient := &http.Client{}
 	req, err := http.NewRequest("GET", lib.GetUpdateURL(), nil)
@@ -55,7 +55,6 @@ func update() (int, []lib.OSLJSONFormat) {
 		return 1, nil
 	}
 
-	fmt.Println("Update done.")
 	return 0, data
 }
 

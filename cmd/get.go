@@ -14,8 +14,7 @@ var format string
 
 func init() {
 	RootCmd.AddCommand(getCmd)
-	getCmd.Flags().StringVar(&format, "format", "", "LICENSE file format")
-
+	getCmd.Flags().StringVarP(&format, "format", "f","", "LICENSE file format")
 }
 
 // getCmd represents the get command
