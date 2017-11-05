@@ -8,10 +8,15 @@ var (
 	httpsource = "http://osl.kevin.codes/"
 	version string
 	buildDate string
+	commit string
 )
 
 func GetVersion() string {
 	return version
+}
+
+func GetCommit() string {
+	return commit
 }
 
 func GetBuildDate() string {
@@ -39,5 +44,5 @@ func GetUpdateURL() string {
 }
 
 func GetUserAgentHeader() string {
-	return "osl-cli v" + version
+	return "license v" + version
 }
