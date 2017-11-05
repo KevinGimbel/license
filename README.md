@@ -1,7 +1,7 @@
 # `license`
 > Download open source license files for your project
 
-`license` is a command line tool (cli) which allows you to download open source licenses from [osl.kevin.codes](http://osl.kevin.codes).
+`license` is a command line tool which allows you to download open source licenses from [osl.kevin.codes](http://osl.kevin.codes).
 
 ### Install
 
