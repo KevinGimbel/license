@@ -1,6 +1,6 @@
 builds:
   - binary: license
-    flags: -X lib.build={{.Version}} -X lib.buildDate={{.Date}} -X lib.commit={{.Commit}}
+    ldflags: -X lib.build={{.Version}} -X lib.buildDate={{.Date}} -X lib.commit={{.Commit}}
     goos:
       - windows
       - darwin
