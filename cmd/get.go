@@ -24,14 +24,14 @@ var getCmd = &cobra.Command{
 	Long: fmt.Sprintf(`Download a license file by ID from %s
 
 	The license file is saved in the current directory and will be named LICENSE. To specify a file extension use the --format flag.
-	To see a list of all licenses, run "osl list". Use the ID to download a license.
+	To see a list of all licenses, run "license list". Use the ID to download a license.
 	`, lib.GetBaseURL()),
 	Run: func(cmd *cobra.Command, args []string) {
 		// Assume args[0] is the license name
 		var licenseName = strings.ToLower(args[0])
 
 		if licenseName == "" {
-			fmt.Println("Please specifiy a license, see osl help get")
+			fmt.Println("Please specifiy a license, see license help get")
 			os.Exit(1)
 		}
 
@@ -57,7 +57,7 @@ func downloadLicense(url string) error {
 		return err
 	}
 
-	req.Header.Set("User-Agent", "osl-cli")
+	req.Header.Set("User-Agent", lib.GetUserAgentHeader())
 	response, err := httpClient.Do(req)
 
 	if format != "" {

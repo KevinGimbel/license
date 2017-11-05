@@ -14,7 +14,7 @@ import (
 var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "Fetch the latest license data",
-	Long: fmt.Sprintf(`Download the latest license data from http://osl.kevin.codes/licenses/
+	Long: fmt.Sprintf(`Download the latest license data as JSON from http://osl.kevin.codes/licenses/
 
 	The downlaoded data is stored inside the %s file.
 	`, lib.GetOutputFilePath()),
@@ -33,7 +33,7 @@ func Update() (int, []lib.OSLJSONFormat) {
 		return 1, nil
 	}
 
-	req.Header.Set("User-Agent", "osl-cli")
+	req.Header.Set("User-Agent", lib.GetUserAgentHeader())
 	response, err := httpClient.Do(req)
 
 	defer response.Body.Close()
