@@ -1,0 +1,21 @@
+builds:
+  - binary: license
+    flags: -X lib.build={{.Version}} -X lib.buildDate={{.Date}} -X lib.commit={{.Commit}}
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+
+archive:
+  replacements:
+    amd64: 64-bit
+    darwin: macOS
+ 
+# brew:
+#  github:
+#    owner: kevingimbel
+#    name: homebrew-tap
+#  homepage: https://github.com/kevingimbel/license
+#  description: "Download open source licenses with one command."
