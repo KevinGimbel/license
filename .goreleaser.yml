@@ -1,21 +1,22 @@
 builds:
-  binary: license
-  ldflags: -X lib.build={{.Version}} -X lib.buildDate={{.Date}} -X lib.commit={{.Commit}}
-  env:
-    - CGO_ENABLED=0
-  goos:
-    - darwin
-    - linux
-    - windows
-    - freebsd
-    - netbsd
-    - openbsd
-    - dragonfly
-  goarch:
-    - amd64
-    - 386
-    - arm
-    - arm64
+  - main: main.go
+    binary: license
+    ldflags: -X lib.build={{.Version}} -X lib.buildDate={{.Date}} -X lib.commit={{.Commit}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - windows
+      - freebsd
+      - netbsd
+      - openbsd
+      - dragonfly
+    goarch:
+      - amd64
+      - 386
+      - arm
+      - arm64
 
 archive:
   format_overrides:
@@ -37,8 +38,8 @@ archive:
 
 brew:
   github:
-  owner: kevingimbel
-  name: homebrew-tap
+    owner: kevingimbel
+    name: homebrew-tap
   homepage: https://github.com/kevingimbel/license
   description: "CLI tool to download license files."
 
