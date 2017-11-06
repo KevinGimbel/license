@@ -1,21 +1,53 @@
 builds:
-  - binary: license
-    ldflags: -X lib.build={{.Version}} -X lib.buildDate={{.Date}} -X lib.commit={{.Commit}}
-    goos:
-      - windows
-      - darwin
-      - linux
-    goarch:
-      - amd64
+  binary: license
+  ldflags: -X lib.build={{.Version}} -X lib.buildDate={{.Date}} -X lib.commit={{.Commit}}
+  env:
+    - CGO_ENABLED=0
+  goos:
+    - darwin
+    - linux
+    - windows
+    - freebsd
+    - netbsd
+    - openbsd
+    - dragonfly
+  goarch:
+    - amd64
+    - 386
+    - arm
+    - arm64
 
 archive:
+  format_overrides:
+    - goos: windows
+      format: zip
+  name_template: "{{.Binary}}_{{.Version}}_{{.Os}}-{{.Arch}}"
   replacements:
-    amd64: 64-bit
+    amd64: 64bit
+    386: 32bit
+    arm: ARM
+    arm64: ARM64
     darwin: macOS
- 
-# brew:
-#  github:
-#    owner: kevingimbel
-#    name: homebrew-tap
-#  homepage: https://github.com/kevingimbel/license
-#  description: "Download open source licenses with one command."
+    linux: Linux
+    windows: Windows
+    openbsd: OpenBSD
+    netbsd: NetBSD
+    freebsd: FreeBSD
+    dragonfly: DragonFlyBSD
+
+brew:
+  github:
+  owner: kevingimbel
+  name: homebrew-tap
+  homepage: https://github.com/kevingimbel/license
+  description: "CLI tool to download license files."
+
+fpm:
+  vendor: Kevin Gimbel
+  homepage: https://github.com/kevingimbel/license
+  maintainer: Kevin Gimbel <kevin@kevin.codes>
+  description: "CLI tool to download license files."
+  license: MIT
+  formats:
+    - deb
+    - rpm

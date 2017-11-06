@@ -31,6 +31,16 @@ func Build() error {
 	return sh.RunWith(flagEnv(), "go", "build", "-ldflags", LDFLAGS, packageName)
 }
 
+// Create a full release with goreleaser (Pushes to GitHub)
+func Release() error {
+	return sh.Run("goreleaser", "--rm-dist")
+}
+
+// Create a pre-release with goreleaser
+func PreRelease() error {
+	return sh.Run("goreleaser", "--rm-dist", "--snapshot")
+}
+
 // Run "go fmt" on all files
 func Format() error {
 	return sh.Run("go", "fmt")
