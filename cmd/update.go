@@ -1,14 +1,14 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
-	"encoding/json"
+
 	"github.com/kevingimbel/license/lib"
 	"github.com/spf13/cobra"
 )
-
 
 // getCmd represents the get command
 var updateCmd = &cobra.Command{
@@ -16,7 +16,7 @@ var updateCmd = &cobra.Command{
 	Short: "Fetch the latest license data",
 	Long: fmt.Sprintf(`Download the latest license data as JSON from http://osl.kevin.codes/licenses/
 
-	The downlaoded data is stored inside the %s file.
+The downlaoded data is stored inside the %s file.
 	`, lib.GetOutputFilePath()),
 	Run: func(cmd *cobra.Command, args []string) {
 		Update()

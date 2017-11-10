@@ -2,19 +2,20 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/kevingimbel/license/lib"
-	"github.com/spf13/cobra"
+	"io"
 	"net/http"
 	"os"
-	"io"
 	"strings"
+
+	"github.com/kevingimbel/license/lib"
+	"github.com/spf13/cobra"
 )
 
 var format string
 
 func init() {
 	RootCmd.AddCommand(getCmd)
-	getCmd.Flags().StringVarP(&format, "format", "f","", "LICENSE file format")
+	getCmd.Flags().StringVarP(&format, "format", "f", "", "LICENSE file format")
 }
 
 // getCmd represents the get command
@@ -23,8 +24,8 @@ var getCmd = &cobra.Command{
 	Short: "Download a license file by ID",
 	Long: fmt.Sprintf(`Download a license file by ID from %s
 
-	The license file is saved in the current directory and will be named LICENSE. To specify a file extension use the --format flag.
-	To see a list of all licenses, run "license list". Use the ID to download a license.
+The license file is saved in the current directory and will be named LICENSE. To specify a file extension use the --format flag.
+To see a list of all licenses, run "license list". Use the ID to download a license.
 	`, lib.GetBaseURL()),
 	Run: func(cmd *cobra.Command, args []string) {
 		// Assume args[0] is the license name
