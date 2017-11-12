@@ -3,6 +3,12 @@
 
 `license` is a command line tool which allows you to download open source licenses from [osl.kevin.codes](http://osl.kevin.codes).
 
+### Demo
+
+[![asciicast](https://asciinema.org/a/Y58TBBoRlqnHdHlJiNBvN1VcC.png)](https://asciinema.org/a/Y58TBBoRlqnHdHlJiNBvN1VcC)
+
+_Click the image above to see a demo video on asciinema.org_
+
 ### Install
 
 #### Binary
