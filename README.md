@@ -24,6 +24,12 @@ $ brew tap kevingimbel/tap
 $ brew install license
 ```
 
+On Linux machines, use `go get`
+
+```sh
+$ get github.com/kevingimbel/license
+```
+
 ### Usage
 
 See `license help` for a list of all commands.
