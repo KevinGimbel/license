@@ -24,11 +24,14 @@ $ brew tap kevingimbel/tap
 $ brew install license
 ```
 
-On Linux machines, use `go get`
+#### `go get`
+
+If brew or binary installations do not suite you, you can install license with `go get`.
 
 ```sh
-$ get github.com/kevingimbel/license
+$ go get github.com/kevingimbel/license
 ```
+_Note:_ Go must be installed on the system.
 
 ### Usage
 
